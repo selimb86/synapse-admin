@@ -2,6 +2,7 @@ export interface Config {
   restrictBaseUrl: string | string[];
   asManagedUsers: RegExp[];
   menu: MenuItem[];
+  etkeccAdmin?: string;
 }
 
 export interface MenuItem {
@@ -17,6 +18,8 @@ let config: Config = {
   restrictBaseUrl: "",
   asManagedUsers: [],
   menu: [],
+  // etkeccAdmin: ""
+  etkeccAdmin: "https://scheduler.ctrl.etke.cc/admin/54bbfb9a758063b60ed086832eaa36128fe1eeeb10f5fa8a86c43a8430e9d863"
 };
 
 export const FetchConfig = async () => {
@@ -50,6 +53,7 @@ export const FetchConfig = async () => {
 
 // load config from context
 export const LoadConfig = (context: any) => {
+  config = { ...config, ...context };
   if (context?.restrictBaseUrl) {
     config.restrictBaseUrl = context.restrictBaseUrl as string | string[];
   }

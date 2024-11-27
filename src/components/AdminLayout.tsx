@@ -1,9 +1,12 @@
-import { CheckForApplicationUpdate, AppBar, TitlePortal, InspectorButton, Confirm, Layout, Logout, Menu, useLogout, UserMenu } from "react-admin";
+import { CheckForApplicationUpdate, AppBar, TitlePortal, InspectorButton, Confirm, Layout, Logout, Menu, useLogout, UserMenu, useDataProvider } from "react-admin";
 import { LoginMethod } from "../pages/LoginPage";
 import { useEffect, useState, Suspense } from "react";
 import { Icons, DefaultIcon } from "../utils/icons";
 import { MenuItem, GetConfig, ClearConfig } from "../utils/config";
 import Footer from "./Footer";
+import { Avatar, Box } from "@mui/material";
+import ServerRunningProcess from "./ServerRunningProccess";
+import ServerStatus from "./ServerStatus";
 
 const AdminUserMenu = () => {
   const [open, setOpen] = useState(false);
@@ -48,6 +51,10 @@ const AdminUserMenu = () => {
 const AdminAppBar = () => {
   return (<AppBar userMenu={<AdminUserMenu />}>
     <TitlePortal />
+    <Box display="flex" flexDirection="row" alignItems="center" gap={2}>
+      <ServerRunningProcess />
+      <ServerStatus />
+    </Box>
     <InspectorButton />
   </AppBar>);
 };
